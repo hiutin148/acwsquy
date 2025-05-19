@@ -9,6 +9,8 @@ import org.springframework.data.repository.query.Param;
 import com.hiutin.awcsquy.entity.Order;
 import com.hiutin.awcsquy.entity.enums.OrderStatus;
 
+import lombok.NonNull;
+
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -19,6 +21,7 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
     List<Order> findByUserIdOrderByOrderDateDesc(Long userId);
 
     // For Admin: Get all orders with pagination
+    @NonNull
     Page<Order> findAll(Pageable pageable);
 
     // For checking if user purchased a product (used in ReviewService)

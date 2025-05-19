@@ -17,7 +17,7 @@ public class ProductResponse {
     private String description;
     private BigDecimal price;
     private Integer quantity;
-    private String category;
+    private CategoryInfoResponse category;
     private String brand;
     private List<String> images;
     private Double averageRating;

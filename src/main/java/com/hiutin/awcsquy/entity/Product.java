@@ -9,6 +9,7 @@ import lombok.Setter;
 import java.math.BigDecimal;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.hiutin.awcsquy.entity.common.BaseEntity;
 
 @Getter
@@ -26,7 +27,6 @@ public class Product extends BaseEntity {
     private BigDecimal price;
     @Column(nullable = false)
     private Integer quantity; // Stock quantity
-    private String category; // Simple category, can be an Enum or another Entity
     private String brand;
 
     @ElementCollection(fetch = FetchType.LAZY) // For list of image URLs
@@ -48,4 +48,8 @@ public class Product extends BaseEntity {
 
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<CartItem> cartItems;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "category_id", nullable = true)
+    private Category category;
 }
